@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript — Lógica e Interacción</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    h2 { border-left: 3px solid var(--accent-js); padding-left: 1rem; }
+    code { color: var(--accent-js); }
+
+    /* JS syntax */
+    .kw  { color: #c792ea; }  /* keyword */
+    .str { color: #c3e88d; }  /* string */
+    .num { color: #f78c6c; }  /* number */
+    .fn  { color: #82aaff; }  /* function */
+    .cm  { color: var(--muted); font-style: italic; }
+    .op  { color: var(--accent-js); } /* operator/special */
+
+    /* Interactive console */
+    .console-box {
+      background: #0a0e1a;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .console-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .console-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .cd1 { background: #ff5f57; }
+    .cd2 { background: #febc2e; }
+    .cd3 { background: #28c840; }
+    .console-title { font-family: var(--font-code); font-size: 0.75rem; color: var(--muted); margin-left: 0.25rem; }
+    .console-output {
+      min-height: 80px;
+      padding: 1rem;
+      font-family: var(--font-code);
+      font-size: 0.82rem;
+      color: #a8e6a3;
+      white-space: pre-wrap;
+      line-height: 1.7;
+    }
+    .console-log { color: #a8e6a3; }
+    .console-err { color: #ff7b54; }
+    .console-warn { color: var(--accent-js); }
+
+    /* Quiz styles */
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 0.5rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-option:hover { border-color: var(--accent-js); color: var(--white); }
+    .quiz-option.correct { border-color: #44eb9a; background: rgba(68,235,154,.1); color: #44eb9a; }
+    .quiz-option.wrong   { border-color: var(--accent-html); background: rgba(255,123,84,.1); color: var(--accent-html); }
+    .quiz-feedback { font-size: 0.85rem; margin-top: 0.75rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); }
+    .quiz-feedback.ok  { background: rgba(68,235,154,.1); color: #44eb9a; border: 1px solid rgba(68,235,154,.3); }
+    .quiz-feedback.bad { background: rgba(255,123,84,.1); color: var(--accent-html); border: 1px solid rgba(255,123,84,.3); }
+
+    /* Counter demo */
+    .counter-demo {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 1rem 0;
+    }
+    .counter-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--white);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+    }
+    .counter-btn:hover { border-color: var(--accent-js); background: rgba(245,215,97,.1); color: var(--accent-js); }
+    #counter-display {
+      font-family: var(--font-code);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-js);
+      min-width: 3rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>&lt;</span>WebDev<span>/&gt;</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 Inicio</a></li>
+    <li><a href="html.html" class="html-link">⟨⟩ HTML</a></li>
+    <li><a href="css.html" class="css-link">✦ CSS</a></li>
+    <li><a href="js.html"  class="js-link active-page">⚡ JavaScript</a></li>
+  </ul>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="index.html">🏠 Inicio</a>
+  <a href="html.html">⟨⟩ HTML</a>
+  <a href="css.html">✦ CSS</a>
+  <a href="js.html">⚡ JavaScript</a>
+</div>
+
+<main class="page-wrap">
+
+  <div class="page-hero">
+    <span class="badge badge-js">⚡ JavaScript</span>
+    <h1>Lógica e Interacción</h1>
+    <p>JavaScript es el lenguaje de programación de la web. Añade comportamiento dinámico: responde a eventos, modifica el DOM y comunica con servidores.</p>
+  </div>
+
+  <!-- ── SECCIÓN 1: VARIABLES ── -->
+  <section class="section">
+    <h2>Variables y tipos de datos</h2>
+    <p>Las variables almacenan valores. En JS moderno usamos <code>const</code> (no reasignable) y <code>let</code> (reasignable). Evita <code>var</code>.</p>
+
+    <pre><code><span class="cm">// Declaración de variables</span>
+<span class="kw">const</span> nombre <span class="op">=</span> <span class="str">"Kevin"</span>;        <span class="cm">// string</span>
+<span class="kw">const</span> edad <span class="op">=</span> <span class="num">21</span>;               <span class="cm">// number</span>
+<span class="kw">const</span> activo <span class="op">=</span> <span class="kw">true</span>;           <span class="cm">// boolean</span>
+<span class="kw">let</span>   contador <span class="op">=</span> <span class="num">0</span>;            <span class="cm">// reasignable</span>
+<span class="kw">const</span> notas <span class="op">=</span> [<span class="num">4.5</span>, <span class="num">3.8</span>, <span class="num">5.0</span>]; <span class="cm">// array</span>
+<span class="kw">const</span> usuario <span class="op">=</span> {              <span class="cm">// object</span>
+  nombre: <span class="str">"Kevin"</span>,
+  carrera: <span class="str">"Ingeniería"</span>,
+};
+
+<span class="cm">// typeof para conocer el tipo</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> nombre);   <span class="cm">// "string"</span>
+console.<span class="fn">log</span>(<span class="kw">typeof</span> edad);     <span class="cm">// "number"</span>
+<span class="code-label">JS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN 2: FUNCIONES ── -->
+  <section class="section">
+    <h2>Funciones</h2>
+    <p>Las funciones encapsulan código reutilizable. Hay tres formas principales de declararlas:</p>
+
+    <pre><code><span class="cm">// 1. Declaración de función</span>
+<span class="kw">function</span> <span class="fn">saludar</span>(nombre) {
+  <span class="kw">return</span> <span class="str">`Hola, ${nombre}!`</span>;
+}
+
+<span class="cm">// 2. Expresión de función</span>
+<span class="kw">const</span> <span class="fn">sumar</span> <span class="op">=</span> <span class="kw">function</span>(a, b) {
+  <span class="kw">return</span> a <span class="op">+</span> b;
+};
+
+<span class="cm">// 3. Arrow function (más común en JS moderno)</span>
+<span class="kw">const</span> <span class="fn">multiplicar</span> <span class="op">=</span> (a, b) <span class="op">=></span> a <span class="op">*</span> b;
+
+<span class="cm">// Con múltiples líneas</span>
+<span class="kw">const</span> <span class="fn">calcularPromedio</span> <span class="op">=</span> (notas) <span class="op">=></span> {
+  <span class="kw">const</span> total <span class="op">=</span> notas.<span class="fn">reduce</span>((acc, n) <span class="op">=></span> acc <span class="op">+</span> n, <span class="num">0</span>);
+  <span class="kw">return</span> total <span class="op">/</span> notas.length;
+};
+
+console.<span class="fn">log</span>(<span class="fn">saludar</span>(<span class="str">"Kevin"</span>));         <span class="cm">// "Hola, Kevin!"</span>
+console.<span class="fn">log</span>(<span class="fn">multiplicar</span>(<span class="num">3</span>, <span class="num">4</span>));       <span class="cm">// 12</span>
+console.<span class="fn">log</span>(<span class="fn">calcularPromedio</span>([<span class="num">4</span>,<span class="num">5</span>,<span class="num">3</span>])); <span class="cm">// 4</span>
+<span class="code-label">JS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN 3: ESTRUCTURAS DE CONTROL ── -->
+  <section class="section">
+    <h2>Estructuras de control</h2>
+
+    <pre><code><span class="cm">// Condicionales</span>
+<span class="kw">const</span> nota <span class="op">=</span> <span class="num">3.5</span>;
+
+<span class="kw">if</span> (nota <span class="op">>=</span> <span class="num">3.0</span>) {
+  console.<span class="fn">log</span>(<span class="str">"Aprobado ✅"</span>);
+} <span class="kw">else if</span> (nota <span class="op">>=</span> <span class="num">2.0</span>) {
+  console.<span class="fn">log</span>(<span class="str">"Recuperación ⚠️"</span>);
+} <span class="kw">else</span> {
+  console.<span class="fn">log</span>(<span class="str">"Reprobado ❌"</span>);
+}
+
+<span class="cm">// Ternario (if corto)</span>
+<span class="kw">const</span> estado <span class="op">=</span> nota <span class="op">>=</span> <span class="num">3.0</span> <span class="op">?</span> <span class="str">"Aprobado"</span> <span class="op">:</span> <span class="str">"Reprobado"</span>;
+
+<span class="cm">// Bucles</span>
+<span class="kw">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="num">0</span>; i <span class="op">&lt;</span> <span class="num">5</span>; i<span class="op">++</span>) {
+  console.<span class="fn">log</span>(<span class="str">`Iteración ${i}`</span>);
+}
+
+<span class="kw">const</span> frutas <span class="op">=</span> [<span class="str">"🍎"</span>, <span class="str">"🍌"</span>, <span class="str">"🍇"</span>];
+frutas.<span class="fn">forEach</span>(fruta <span class="op">=></span> console.<span class="fn">log</span>(fruta));
+
+<span class="cm">// while</span>
+<span class="kw">let</span> x <span class="op">=</span> <span class="num">0</span>;
+<span class="kw">while</span> (x <span class="op">&lt;</span> <span class="num">3</span>) { console.<span class="fn">log</span>(x); x<span class="op">++</span>; }
+<span class="code-label">JS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN 4: DOM ── -->
+  <section class="section">
+    <h2>Manipulación del DOM</h2>
+    <p>El DOM (Document Object Model) es la representación del HTML como un árbol de objetos que JavaScript puede leer y modificar.</p>
+
+    <div class="info-card">
+      <div class="info-icon">🌳</div>
+      <div class="info-content">
+        <h4>document es el punto de entrada</h4>
+        <p>Desde <code>document</code> accedes a cualquier elemento con métodos como <code>querySelector</code>, <code>getElementById</code>, etc.</p>
+      </div>
+    </div>
+
+    <pre><code><span class="cm">// Seleccionar elementos</span>
+<span class="kw">const</span> titulo <span class="op">=</span> document.<span class="fn">querySelector</span>(<span class="str">"h1"</span>);
+<span class="kw">const</span> btn    <span class="op">=</span> document.<span class="fn">getElementById</span>(<span class="str">"mi-boton"</span>);
+<span class="kw">const</span> items  <span class="op">=</span> document.<span class="fn">querySelectorAll</span>(<span class="str">".item"</span>);
+
+<span class="cm">// Modificar contenido</span>
+titulo.textContent <span class="op">=</span> <span class="str">"Nuevo título"</span>;
+titulo.innerHTML   <span class="op">=</span> <span class="str">"Texto con &lt;strong&gt;negrita&lt;/strong&gt;"</span>;
+
+<span class="cm">// Modificar estilos</span>
+titulo.style.color    <span class="op">=</span> <span class="str">"#ff7b54"</span>;
+titulo.style.fontSize <span class="op">=</span> <span class="str">"2rem"</span>;
+
+<span class="cm">// Clases</span>
+titulo.<span class="fn">classList</span>.<span class="fn">add</span>(<span class="str">"activo"</span>);
+titulo.<span class="fn">classList</span>.<span class="fn">remove</span>(<span class="str">"oculto"</span>);
+titulo.<span class="fn">classList</span>.<span class="fn">toggle</span>(<span class="str">"visible"</span>);
+
+<span class="cm">// Atributos</span>
+btn.<span class="fn">setAttribute</span>(<span class="str">"disabled"</span>, <span class="str">""</span>);
+<span class="kw">const</span> src <span class="op">=</span> img.<span class="fn">getAttribute</span>(<span class="str">"src"</span>);
+
+<span class="cm">// Crear e insertar elementos</span>
+<span class="kw">const</span> parrafo <span class="op">=</span> document.<span class="fn">createElement</span>(<span class="str">"p"</span>);
+parrafo.textContent <span class="op">=</span> <span class="str">"Nuevo párrafo"</span>;
+document.body.<span class="fn">appendChild</span>(parrafo);
+<span class="code-label">JS</span></code></pre>
+
+    <h3>Eventos</h3>
+    <pre><code><span class="cm">// addEventListener(evento, función)</span>
+btn.<span class="fn">addEventListener</span>(<span class="str">"click"</span>, () <span class="op">=></span> {
+  console.<span class="fn">log</span>(<span class="str">"¡Click!"</span>);
+});
+
+<span class="cm">// Eventos del input</span>
+input.<span class="fn">addEventListener</span>(<span class="str">"input"</span>, (e) <span class="op">=></span> {
+  console.<span class="fn">log</span>(e.target.value);  <span class="cm">// valor actual</span>
+});
+
+<span class="cm">// Eventos del teclado</span>
+document.<span class="fn">addEventListener</span>(<span class="str">"keydown"</span>, (e) <span class="op">=></span> {
+  <span class="kw">if</span> (e.key <span class="op">===</span> <span class="str">"Enter"</span>) <span class="fn">enviar</span>();
+});
+
+<span class="cm">// Prevenir comportamiento default</span>
+form.<span class="fn">addEventListener</span>(<span class="str">"submit"</span>, (e) <span class="op">=></span> {
+  e.<span class="fn">preventDefault</span>();
+  <span class="fn">procesarFormulario</span>();
+});
+<span class="code-label">JS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── DEMOS INTERACTIVOS ── -->
+  <section class="section">
+    <h2>Demos Interactivos</h2>
+
+    <h3>Demo 1 — Contador</h3>
+    <p>Un ejemplo clásico de DOM + eventos:</p>
+
+    <div class="counter-demo">
+      <button class="counter-btn" id="dec-btn">−</button>
+      <span id="counter-display">0</span>
+      <button class="counter-btn" id="inc-btn">+</button>
+      <button class="btn btn-js" id="reset-btn" style="margin-left:1rem;">↺ Reset</button>
+    </div>
+
+    <pre><code><span class="kw">let</span> contador <span class="op">=</span> <span class="num">0</span>;
+<span class="kw">const</span> display <span class="op">=</span> document.<span class="fn">getElementById</span>(<span class="str">"display"</span>);
+
+document.<span class="fn">getElementById</span>(<span class="str">"inc"</span>).<span class="fn">addEventListener</span>(<span class="str">"click"</span>, () <span class="op">=></span> {
+  contador<span class="op">++</span>;
+  display.textContent <span class="op">=</span> contador;
+});
+document.<span class="fn">getElementById</span>(<span class="str">"dec"</span>).<span class="fn">addEventListener</span>(<span class="str">"click"</span>, () <span class="op">=></span> {
+  contador<span class="op">--</span>;
+  display.textContent <span class="op">=</span> contador;
+});
+<span class="code-label">JS</span></code></pre>
+
+    <h3>Demo 2 — Consola JS en vivo</h3>
+    <p>Escribe código JS y presiona <strong>Ejecutar</strong>. Usa <code>print()</code> para ver la salida:</p>
+
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <span class="exercise-title">⚡ Editor JS</span>
+        <button class="btn btn-js" onclick="runJS()">▶ Ejecutar</button>
+        <button class="btn" style="background:var(--bg3);border-color:var(--border);color:var(--muted);" onclick="clearConsole()">🗑 Limpiar</button>
+      </div>
+      <div class="exercise-body">
+        <textarea class="code-input" id="js-editor" spellcheck="false" style="min-height:200px;">// Escribe tu código aquí
+// Usa print() para mostrar en consola
+
+const nombres = ["Ana", "Luis", "María", "Carlos"];
+
+nombres.forEach((nombre, i) => {
+  print(`${i + 1}. ¡Hola, ${nombre}!`);
+});
+
+print("---");
+
+// Función con array methods
+const notas = [4.5, 3.2, 5.0, 2.8, 4.1];
+const promedio = notas.reduce((a, b) => a + b, 0) / notas.length;
+print(`Promedio: ${promedio.toFixed(2)}`);
+print(`Máxima: ${Math.max(...notas)}`);
+print(`Aprobados: ${notas.filter(n => n >= 3.0).length}/${notas.length}`);</textarea>
+        <div class="console-box" style="margin-top:.75rem;">
+          <div class="console-header">
+            <div class="console-dot cd1"></div>
+            <div class="console-dot cd2"></div>
+            <div class="console-dot cd3"></div>
+            <span class="console-title">Consola de salida</span>
+          </div>
+          <div class="console-output" id="js-console">// Presiona Ejecutar para ver la salida</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Demo 3 — Quiz interactivo</h3>
+    <p>¿Cuál es el resultado de <code>typeof null</code> en JavaScript?</p>
+
+    <div class="exercise-box">
+      <div class="exercise-body">
+        <button class="quiz-option" onclick="checkAnswer(this, false)">A) null</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">B) undefined</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">C) object</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">D) string</button>
+        <div id="quiz-feedback" style="display:none;"></div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN: ARRAYS Y OBJETOS ── -->
+  <section class="section">
+    <h2>Arrays y Objetos</h2>
+    <pre><code><span class="cm">// Arrays — métodos esenciales</span>
+<span class="kw">const</span> nums <span class="op">=</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">5</span>];
+
+nums.<span class="fn">push</span>(<span class="num">6</span>);               <span class="cm">// añadir al final</span>
+nums.<span class="fn">pop</span>();                 <span class="cm">// eliminar el último</span>
+nums.<span class="fn">unshift</span>(<span class="num">0</span>);           <span class="cm">// añadir al inicio</span>
+
+<span class="kw">const</span> dobles <span class="op">=</span> nums.<span class="fn">map</span>(n <span class="op">=></span> n <span class="op">*</span> <span class="num">2</span>);         <span class="cm">// transformar</span>
+<span class="kw">const</span> pares  <span class="op">=</span> nums.<span class="fn">filter</span>(n <span class="op">=></span> n <span class="op">%</span> <span class="num">2</span> <span class="op">===</span> <span class="num">0</span>);  <span class="cm">// filtrar</span>
+<span class="kw">const</span> suma   <span class="op">=</span> nums.<span class="fn">reduce</span>((a, b) <span class="op">=></span> a <span class="op">+</span> b, <span class="num">0</span>); <span class="cm">// reducir</span>
+<span class="kw">const</span> inc    <span class="op">=</span> nums.<span class="fn">includes</span>(<span class="num">3</span>);              <span class="cm">// true/false</span>
+<span class="kw">const</span> idx    <span class="op">=</span> nums.<span class="fn">indexOf</span>(<span class="num">3</span>);               <span class="cm">// posición</span>
+
+<span class="cm">// Objetos</span>
+<span class="kw">const</span> estudiante <span class="op">=</span> {
+  nombre: <span class="str">"Kevin"</span>,
+  codigo: <span class="num">20231234</span>,
+  materias: [<span class="str">"Álgebra"</span>, <span class="str">"POO"</span>],
+  estaActivo: <span class="kw">true</span>,
+  <span class="fn">saludar</span>() {
+    <span class="kw">return</span> <span class="str">`Hola, soy ${this.nombre}`</span>;
+  }
+};
+
+<span class="cm">// Acceso</span>
+console.<span class="fn">log</span>(estudiante.nombre);         <span class="cm">// "Kevin"</span>
+console.<span class="fn">log</span>(estudiante[<span class="str">"codigo"</span>]);      <span class="cm">// 20231234</span>
+console.<span class="fn">log</span>(estudiante.<span class="fn">saludar</span>());      <span class="cm">// "Hola, soy Kevin"</span>
+
+<span class="cm">// Desestructuración</span>
+<span class="kw">const</span> { nombre, codigo } <span class="op">=</span> estudiante;
+<span class="kw">const</span> [primera] <span class="op">=</span> estudiante.materias;
+<span class="code-label">JS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── TAREAS JS ── -->
+  <section class="section">
+    <h2>Tareas</h2>
+    <div class="task-list">
+      <div class="task-item task-js">
+        <div class="task-num">01</div>
+        <div class="task-content">
+          <strong>Calculadora básica</strong>
+          <p>Crea una función <code>calcular(a, operador, b)</code> que soporte +, -, *, / y retorne el resultado. Valida la división por cero.</p>
+        </div>
+        <span class="task-diff diff-easy">Fácil</span>
+      </div>
+      <div class="task-item task-js">
+        <div class="task-num">02</div>
+        <div class="task-content">
+          <strong>Lista de tareas (To-Do)</strong>
+          <p>Construye una app con un input y botón para agregar items a una lista HTML. Permite marcar como completados y eliminar items.</p>
+        </div>
+        <span class="task-diff diff-easy">Fácil</span>
+      </div>
+      <div class="task-item task-js">
+        <div class="task-num">03</div>
+        <div class="task-content">
+          <strong>Filtro en tiempo real</strong>
+          <p>Dado un array de nombres, muéstralos en tarjetas HTML y agrega un input de búsqueda que filtre las tarjetas mientras el usuario escribe.</p>
+        </div>
+        <span class="task-diff diff-medium">Medio</span>
+      </div>
+      <div class="task-item task-js">
+        <div class="task-num">04</div>
+        <div class="task-content">
+          <strong>Temporizador</strong>
+          <p>Crea un cronómetro con botones Iniciar, Pausar y Resetear usando <code>setInterval</code>. Muestra minutos y segundos formateados.</p>
+        </div>
+        <span class="task-diff diff-medium">Medio</span>
+      </div>
+      <div class="task-item task-js">
+        <div class="task-num">05</div>
+        <div class="task-content">
+          <strong>Juego de adivinar el número</strong>
+          <p>Genera un número aleatorio entre 1 y 100. El usuario tiene 7 intentos. Muestra pistas (muy alto / muy bajo) y el conteo de intentos restantes.</p>
+        </div>
+        <span class="task-diff diff-hard">Difícil</span>
+      </div>
+      <div class="task-item task-js">
+        <div class="task-num">06</div>
+        <div class="task-content">
+          <strong>Consumir una API pública</strong>
+          <p>Usa <code>fetch()</code> para consumir <code>https://pokeapi.co/api/v2/pokemon/pikachu</code> y muestra el nombre, imagen y tipos del Pokémon en la página.</p>
+        </div>
+        <span class="task-diff diff-hard">Difícil</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav-footer">
+    <a href="css.html" class="pnf-link">
+      <span class="pnf-label">← Anterior</span>
+      <span class="pnf-title">✦ CSS</span>
+    </a>
+    <a href="index.html" class="pnf-link right">
+      <span class="pnf-label">Volver al inicio →</span>
+      <span class="pnf-title">🏠 Inicio</span>
+    </a>
+  </div>
+
+</main>
+
+<script>
+  // Nav
+  document.getElementById('ham').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('mob').classList.toggle('open');
+  });
+
+  // Counter
+  let count = 0;
+  const display = document.getElementById('counter-display');
+  document.getElementById('inc-btn').addEventListener('click', () => {
+    count++;
+    display.textContent = count;
+    display.style.color = count > 0 ? 'var(--accent-js)' : count < 0 ? 'var(--accent-html)' : 'var(--accent-js)';
+  });
+  document.getElementById('dec-btn').addEventListener('click', () => {
+    count--;
+    display.textContent = count;
+    display.style.color = count < 0 ? 'var(--accent-html)' : 'var(--accent-js)';
+  });
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    count = 0;
+    display.textContent = 0;
+    display.style.color = 'var(--accent-js)';
+  });
+
+  // JS Console
+  function runJS() {
+    const code = document.getElementById('js-editor').value;
+    const consoleEl = document.getElementById('js-console');
+    const lines = [];
+
+    const sandbox = {
+      print: (...args) => lines.push(args.join(' ')),
+      console: { log: (...a) => lines.push(a.join(' ')), warn: (...a) => lines.push('⚠ ' + a.join(' ')), error: (...a) => lines.push('✖ ' + a.join(' ')) }
+    };
+
+    try {
+      const fn = new Function(...Object.keys(sandbox), code);
+      fn(...Object.values(sandbox));
+      consoleEl.textContent = lines.length ? lines.join('\n') : '// Sin salida';
+      consoleEl.style.color = '#a8e6a3';
+    } catch (e) {
+      consoleEl.textContent = '✖ Error: ' + e.message;
+      consoleEl.style.color = '#ff7b54';
+    }
+  }
+
+  function clearConsole() {
+    document.getElementById('js-console').textContent = '// Consola limpiada';
+  }
+
+  // Quiz
+  let quizAnswered = false;
+  function checkAnswer(btn, isCorrect) {
+    if (quizAnswered) return;
+    quizAnswered = true;
+    const fb = document.getElementById('quiz-feedback');
+    if (isCorrect) {
+      btn.classList.add('correct');
+      fb.className = 'quiz-feedback ok';
+      fb.textContent = '✅ ¡Correcto! typeof null devuelve "object" — es un bug histórico de JS que se mantiene por compatibilidad.';
+    } else {
+      btn.classList.add('wrong');
+      // Mark correct one
+      document.querySelectorAll('.quiz-option')[2].classList.add('correct');
+      fb.className = 'quiz-feedback bad';
+      fb.textContent = '❌ Incorrecto. La respuesta correcta es C) "object". Es uno de los bugs más famosos de JavaScript.';
+    }
+    fb.style.display = 'block';
+  }
+
+  // Auto-run nothing — JS editor on demand
+</script>
+</body>
+</html>

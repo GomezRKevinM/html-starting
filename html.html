@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML — Etiquetas y Estructura</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .tag-name { color: var(--accent-html) !important; }
+    .attr-name { color: var(--accent-js); }
+    .attr-val  { color: #c3e88d; }
+    .tag-bracket { color: var(--muted); }
+    h2 { border-left: 3px solid var(--accent-html); padding-left: 1rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>&lt;</span>WebDev<span>/&gt;</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 Inicio</a></li>
+    <li><a href="html.html" class="html-link active-page">⟨⟩ HTML</a></li>
+    <li><a href="css.html" class="css-link">✦ CSS</a></li>
+    <li><a href="js.html"  class="js-link">⚡ JavaScript</a></li>
+  </ul>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="index.html">🏠 Inicio</a>
+  <a href="html.html">⟨⟩ HTML</a>
+  <a href="css.html">✦ CSS</a>
+  <a href="js.html">⚡ JavaScript</a>
+</div>
+
+<main class="page-wrap">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <span class="badge badge-html">⟨⟩ HTML</span>
+    <h1>Etiquetas y Estructura</h1>
+    <p>HTML (HyperText Markup Language) es el esqueleto de toda página web. Define el contenido y su estructura mediante <strong>etiquetas</strong>.</p>
+  </div>
+
+  <!-- ── SECTION 1: ¿QUÉ ES HTML? ── -->
+  <section class="section">
+    <h2>¿Qué es HTML?</h2>
+    <p>Un documento HTML está formado por <strong>elementos</strong> que consisten en una etiqueta de apertura, contenido y una etiqueta de cierre. El navegador interpreta estas etiquetas y renderiza la página.</p>
+
+    <div class="info-card">
+      <div class="info-icon">💡</div>
+      <div class="info-content">
+        <h4>Anatomía de una etiqueta</h4>
+        <p><code>&lt;etiqueta atributo="valor"&gt;Contenido&lt;/etiqueta&gt;</code> — apertura, atributos opcionales, contenido y cierre.</p>
+      </div>
+    </div>
+
+    <pre><code><span class="tag-bracket">&lt;!</span><span class="k">DOCTYPE</span> <span class="attr-name">html</span><span class="tag-bracket">&gt;</span>
+<span class="tag-bracket">&lt;</span><span class="tag-name">html</span> <span class="attr-name">lang</span>=<span class="attr-val">"es"</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">head</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">meta</span> <span class="attr-name">charset</span>=<span class="attr-val">"UTF-8"</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">title</span><span class="tag-bracket">&gt;</span>Mi primera página<span class="tag-bracket">&lt;/</span><span class="tag-name">title</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;/</span><span class="tag-name">head</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">body</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">h1</span><span class="tag-bracket">&gt;</span>¡Hola Mundo!<span class="tag-bracket">&lt;/</span><span class="tag-name">h1</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">p</span><span class="tag-bracket">&gt;</span>Bienvenido a mi sitio web.<span class="tag-bracket">&lt;/</span><span class="tag-name">p</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;/</span><span class="tag-name">body</span><span class="tag-bracket">&gt;</span>
+<span class="tag-bracket">&lt;/</span><span class="tag-name">html</span><span class="tag-bracket">&gt;</span>
+<span class="code-label">HTML</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECTION 2: ETIQUETAS ESENCIALES ── -->
+  <section class="section">
+    <h2>Etiquetas esenciales</h2>
+    <p>Estas son las etiquetas que usarás en casi todos los proyectos:</p>
+
+    <div class="tag-grid">
+      <div class="tag-item"><span class="tag-name">&lt;h1&gt; – &lt;h6&gt;</span><span class="tag-desc">Encabezados de nivel 1 al 6</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;p&gt;</span><span class="tag-desc">Párrafo de texto</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;a&gt;</span><span class="tag-desc">Enlace / hipervínculo</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;img&gt;</span><span class="tag-desc">Imagen (etiqueta vacía)</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;ul&gt; / &lt;ol&gt;</span><span class="tag-desc">Listas no ordenadas / ordenadas</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;li&gt;</span><span class="tag-desc">Elemento de lista</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;div&gt;</span><span class="tag-desc">Contenedor genérico de bloque</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;span&gt;</span><span class="tag-desc">Contenedor genérico en línea</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;strong&gt;</span><span class="tag-desc">Texto en <strong>negrita</strong> (importante)</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;em&gt;</span><span class="tag-desc">Texto en <em>cursiva</em> (énfasis)</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;br&gt;</span><span class="tag-desc">Salto de línea</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;hr&gt;</span><span class="tag-desc">Línea horizontal separadora</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;table&gt;</span><span class="tag-desc">Tabla de datos</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;form&gt;</span><span class="tag-desc">Formulario interactivo</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;input&gt;</span><span class="tag-desc">Campo de entrada de datos</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;button&gt;</span><span class="tag-desc">Botón interactivo</span></div>
+    </div>
+
+    <h3>Ejemplo: Listas y enlaces</h3>
+    <pre><code><span class="tag-bracket">&lt;</span><span class="tag-name">ul</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">li</span><span class="tag-bracket">&gt;</span>Elemento uno<span class="tag-bracket">&lt;/</span><span class="tag-name">li</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">li</span><span class="tag-bracket">&gt;</span>Elemento dos<span class="tag-bracket">&lt;/</span><span class="tag-name">li</span><span class="tag-bracket">&gt;</span>
+<span class="tag-bracket">&lt;/</span><span class="tag-name">ul</span><span class="tag-bracket">&gt;</span>
+
+<span class="tag-bracket">&lt;</span><span class="tag-name">a</span> <span class="attr-name">href</span>=<span class="attr-val">"https://google.com"</span> <span class="attr-name">target</span>=<span class="attr-val">"_blank"</span><span class="tag-bracket">&gt;</span>
+  Ir a Google
+<span class="tag-bracket">&lt;/</span><span class="tag-name">a</span><span class="tag-bracket">&gt;</span>
+
+<span class="tag-bracket">&lt;</span><span class="tag-name">img</span> <span class="attr-name">src</span>=<span class="attr-val">"foto.jpg"</span> <span class="attr-name">alt</span>=<span class="attr-val">"Descripción"</span> <span class="attr-name">width</span>=<span class="attr-val">"300"</span><span class="tag-bracket">&gt;</span>
+<span class="code-label">HTML</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECTION 3: SEMÁNTICA ── -->
+  <section class="section">
+    <h2>HTML Semántico</h2>
+    <p>Las etiquetas semánticas describen el <em>significado</em> del contenido, mejorando la accesibilidad y el SEO. Usa <code>&lt;div&gt;</code> solo cuando ninguna otra etiqueta semántica aplique.</p>
+
+    <div class="tag-grid">
+      <div class="tag-item"><span class="tag-name">&lt;header&gt;</span><span class="tag-desc">Cabecera del sitio o sección</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;nav&gt;</span><span class="tag-desc">Menú de navegación</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;main&gt;</span><span class="tag-desc">Contenido principal único</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;section&gt;</span><span class="tag-desc">Sección temática del contenido</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;article&gt;</span><span class="tag-desc">Artículo independiente</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;aside&gt;</span><span class="tag-desc">Contenido secundario / barra lateral</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;footer&gt;</span><span class="tag-desc">Pie de página</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;figure&gt;</span><span class="tag-desc">Imagen con leyenda opcional</span></div>
+    </div>
+
+    <pre><code><span class="tag-bracket">&lt;</span><span class="tag-name">body</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">header</span><span class="tag-bracket">&gt;</span><span class="tag-bracket">&lt;</span><span class="tag-name">nav</span><span class="tag-bracket">&gt;</span>...<span class="tag-bracket">&lt;/</span><span class="tag-name">nav</span><span class="tag-bracket">&gt;&lt;/</span><span class="tag-name">header</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">main</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">section</span><span class="tag-bracket">&gt;</span>
+      <span class="tag-bracket">&lt;</span><span class="tag-name">article</span><span class="tag-bracket">&gt;</span>...<span class="tag-bracket">&lt;/</span><span class="tag-name">article</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;/</span><span class="tag-name">section</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">aside</span><span class="tag-bracket">&gt;</span>...<span class="tag-bracket">&lt;/</span><span class="tag-name">aside</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;/</span><span class="tag-name">main</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">footer</span><span class="tag-bracket">&gt;</span>...<span class="tag-bracket">&lt;/</span><span class="tag-name">footer</span><span class="tag-bracket">&gt;</span>
+<span class="tag-bracket">&lt;/</span><span class="tag-name">body</span><span class="tag-bracket">&gt;</span>
+<span class="code-label">HTML</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECTION 4: FORMULARIOS ── -->
+  <section class="section">
+    <h2>Formularios</h2>
+    <p>Los formularios permiten al usuario ingresar y enviar datos. Cada campo <code>&lt;input&gt;</code> tiene un atributo <code>type</code> que define qué tipo de dato acepta.</p>
+
+    <pre><code><span class="tag-bracket">&lt;</span><span class="tag-name">form</span> <span class="attr-name">action</span>=<span class="attr-val">"/enviar"</span> <span class="attr-name">method</span>=<span class="attr-val">"POST"</span><span class="tag-bracket">&gt;</span>
+
+  <span class="tag-bracket">&lt;</span><span class="tag-name">label</span> <span class="attr-name">for</span>=<span class="attr-val">"nombre"</span><span class="tag-bracket">&gt;</span>Nombre:<span class="tag-bracket">&lt;/</span><span class="tag-name">label</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">input</span> <span class="attr-name">type</span>=<span class="attr-val">"text"</span> <span class="attr-name">id</span>=<span class="attr-val">"nombre"</span> <span class="attr-name">name</span>=<span class="attr-val">"nombre"</span> <span class="attr-name">required</span><span class="tag-bracket">&gt;</span>
+
+  <span class="tag-bracket">&lt;</span><span class="tag-name">label</span> <span class="attr-name">for</span>=<span class="attr-val">"email"</span><span class="tag-bracket">&gt;</span>Email:<span class="tag-bracket">&lt;/</span><span class="tag-name">label</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;</span><span class="tag-name">input</span> <span class="attr-name">type</span>=<span class="attr-val">"email"</span> <span class="attr-name">id</span>=<span class="attr-val">"email"</span> <span class="attr-name">name</span>=<span class="attr-val">"email"</span><span class="tag-bracket">&gt;</span>
+
+  <span class="tag-bracket">&lt;</span><span class="tag-name">select</span> <span class="attr-name">name</span>=<span class="attr-val">"pais"</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">option</span> <span class="attr-name">value</span>=<span class="attr-val">"co"</span><span class="tag-bracket">&gt;</span>Colombia<span class="tag-bracket">&lt;/</span><span class="tag-name">option</span><span class="tag-bracket">&gt;</span>
+    <span class="tag-bracket">&lt;</span><span class="tag-name">option</span> <span class="attr-name">value</span>=<span class="attr-val">"mx"</span><span class="tag-bracket">&gt;</span>México<span class="tag-bracket">&lt;/</span><span class="tag-name">option</span><span class="tag-bracket">&gt;</span>
+  <span class="tag-bracket">&lt;/</span><span class="tag-name">select</span><span class="tag-bracket">&gt;</span>
+
+  <span class="tag-bracket">&lt;</span><span class="tag-name">textarea</span> <span class="attr-name">name</span>=<span class="attr-val">"mensaje"</span> <span class="attr-name">rows</span>=<span class="attr-val">"4"</span><span class="tag-bracket">&gt;&lt;/</span><span class="tag-name">textarea</span><span class="tag-bracket">&gt;</span>
+
+  <span class="tag-bracket">&lt;</span><span class="tag-name">button</span> <span class="attr-name">type</span>=<span class="attr-val">"submit"</span><span class="tag-bracket">&gt;</span>Enviar<span class="tag-bracket">&lt;/</span><span class="tag-name">button</span><span class="tag-bracket">&gt;</span>
+<span class="tag-bracket">&lt;/</span><span class="tag-name">form</span><span class="tag-bracket">&gt;</span>
+<span class="code-label">HTML</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── EJERCICIO INTERACTIVO ── -->
+  <section class="section">
+    <h2>Ejercicio Interactivo</h2>
+    <p>Escribe HTML en el editor y presiona <strong>Ejecutar</strong> para ver el resultado en el panel de la derecha:</p>
+
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <span class="exercise-title">✏️ Editor en vivo</span>
+        <button class="btn btn-html" onclick="runHTML()">▶ Ejecutar</button>
+      </div>
+      <div class="exercise-body">
+        <div class="two-col">
+          <div>
+            <p style="font-size:.78rem;color:var(--muted);margin-bottom:.5rem;">Código HTML</p>
+            <textarea class="code-input" id="html-editor" spellcheck="false"><h2>Mi tarjeta</h2>
+<p>Hola, me llamo <strong>Kevin</strong> 👋</p>
+<ul>
+  <li>🎓 Estudiante</li>
+  <li>💻 Programador</li>
+  <li>🌎 Colombia</li>
+</ul>
+<a href="#">Ver más</a></textarea>
+          </div>
+          <div>
+            <p style="font-size:.78rem;color:var(--muted);margin-bottom:.5rem;">Vista previa</p>
+            <iframe class="preview-frame" id="html-preview" style="min-height:200px;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Ejercicio 2 — Tabla HTML</h3>
+    <p>Construye una tabla con <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;th&gt;</code> y <code>&lt;td&gt;</code>:</p>
+
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <span class="exercise-title">📊 Tabla de datos</span>
+        <button class="btn btn-html" onclick="runHTML2()">▶ Ejecutar</button>
+      </div>
+      <div class="exercise-body">
+        <div class="two-col">
+          <div>
+            <textarea class="code-input" id="html-editor2" spellcheck="false" style="min-height:220px;"><table border="1" style="border-collapse:collapse;width:100%;font-family:sans-serif">
+  <tr>
+    <th style="padding:8px;background:#eee">Nombre</th>
+    <th style="padding:8px;background:#eee">Nota</th>
+  </tr>
+  <tr>
+    <td style="padding:8px">Ana</td>
+    <td style="padding:8px">4.8</td>
+  </tr>
+  <tr>
+    <td style="padding:8px">Luis</td>
+    <td style="padding:8px">3.9</td>
+  </tr>
+</table></textarea>
+          </div>
+          <div>
+            <iframe class="preview-frame" id="html-preview2" style="min-height:220px;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── TAREAS ── -->
+  <section class="section">
+    <h2>Tareas</h2>
+    <p>Pon a prueba lo aprendido completando estos retos:</p>
+
+    <div class="task-list">
+      <div class="task-item task-html">
+        <div class="task-num">01</div>
+        <div class="task-content">
+          <strong>Página personal</strong>
+          <p>Crea una página con tu nombre como &lt;h1&gt;, una foto con &lt;img&gt;, una descripción en &lt;p&gt; y tus hobbies en &lt;ul&gt;.</p>
+        </div>
+        <span class="task-diff diff-easy">Fácil</span>
+      </div>
+      <div class="task-item task-html">
+        <div class="task-num">02</div>
+        <div class="task-content">
+          <strong>Formulario de registro</strong>
+          <p>Construye un formulario con campos para nombre, email, contraseña, selección de rol y un botón de enviar.</p>
+        </div>
+        <span class="task-diff diff-easy">Fácil</span>
+      </div>
+      <div class="task-item task-html">
+        <div class="task-num">03</div>
+        <div class="task-content">
+          <strong>Tabla de notas</strong>
+          <p>Crea una tabla HTML que muestre: nombre del estudiante, materia y nota. Agrega al menos 5 filas y usa &lt;thead&gt; y &lt;tbody&gt;.</p>
+        </div>
+        <span class="task-diff diff-medium">Medio</span>
+      </div>
+      <div class="task-item task-html">
+        <div class="task-num">04</div>
+        <div class="task-content">
+          <strong>Layout semántico</strong>
+          <p>Diseña la estructura HTML de un blog usando: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, dos &lt;article&gt;, un &lt;aside&gt; y &lt;footer&gt;. Sin CSS.</p>
+        </div>
+        <span class="task-diff diff-medium">Medio</span>
+      </div>
+      <div class="task-item task-html">
+        <div class="task-num">05</div>
+        <div class="task-content">
+          <strong>Mini sitio multipágina</strong>
+          <p>Crea 3 archivos HTML (inicio.html, nosotros.html, contacto.html) enlazados entre sí con &lt;nav&gt; y &lt;a&gt;. Cada página debe tener contenido diferente.</p>
+        </div>
+        <span class="task-diff diff-hard">Difícil</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER NAV -->
+  <div class="page-nav-footer">
+    <a href="index.html" class="pnf-link">
+      <span class="pnf-label">← Anterior</span>
+      <span class="pnf-title">🏠 Inicio</span>
+    </a>
+    <a href="css.html" class="pnf-link right">
+      <span class="pnf-label">Siguiente →</span>
+      <span class="pnf-title">✦ CSS</span>
+    </a>
+  </div>
+
+</main>
+
+<script>
+  // Nav
+  document.getElementById('ham').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('mob').classList.toggle('open');
+  });
+
+  // Ejercicio 1
+  function runHTML() {
+    const code = document.getElementById('html-editor').value;
+    const frame = document.getElementById('html-preview');
+    const doc = frame.contentDocument || frame.contentWindow.document;
+    doc.open(); doc.write(code); doc.close();
+  }
+
+  // Ejercicio 2
+  function runHTML2() {
+    const code = document.getElementById('html-editor2').value;
+    const frame = document.getElementById('html-preview2');
+    const doc = frame.contentDocument || frame.contentWindow.document;
+    doc.open(); doc.write(code); doc.close();
+  }
+
+  // Auto-run on load
+  window.addEventListener('load', () => { runHTML(); runHTML2(); });
+</script>
+</body>
+</html>

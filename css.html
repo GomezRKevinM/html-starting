@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS — Estilos y Diseño</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    h2 { border-left: 3px solid var(--accent-css); padding-left: 1rem; }
+    code { color: var(--accent-css); }
+    .prop { color: var(--accent-css); }
+    .val  { color: #c3e88d; }
+    .sel  { color: var(--accent-js); }
+    .cm   { color: var(--muted); font-style: italic; }
+
+    /* Live demo styles */
+    .box-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin: 1rem 0;
+      align-items: center;
+    }
+    .flex-demo { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .flex-box {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .fb1 { background: rgba(255,123,84,.2); border: 1px solid var(--accent-html); color: var(--accent-html); }
+    .fb2 { background: rgba(56,217,245,.2); border: 1px solid var(--accent-css);  color: var(--accent-css); }
+    .fb3 { background: rgba(245,215,97,.2); border: 1px solid var(--accent-js);   color: var(--accent-js); }
+
+    .color-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .color-chip {
+      width: 60px; height: 60px;
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-end;
+      padding: 4px 6px;
+      font-size: 0.6rem;
+      font-family: var(--font-code);
+      color: rgba(255,255,255,.8);
+    }
+
+    /* Selectores visuales */
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .spec-table th, .spec-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    .spec-table th {
+      background: var(--bg2);
+      color: var(--white);
+      font-weight: 600;
+    }
+    .spec-table td { color: var(--text); }
+    .spec-table code { background: none; font-size: 0.82rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><span>&lt;</span>WebDev<span>/&gt;</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">🏠 Inicio</a></li>
+    <li><a href="html.html" class="html-link">⟨⟩ HTML</a></li>
+    <li><a href="css.html" class="css-link active-page">✦ CSS</a></li>
+    <li><a href="js.html"  class="js-link">⚡ JavaScript</a></li>
+  </ul>
+  <button class="hamburger" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mob">
+  <a href="index.html">🏠 Inicio</a>
+  <a href="html.html">⟨⟩ HTML</a>
+  <a href="css.html">✦ CSS</a>
+  <a href="js.html">⚡ JavaScript</a>
+</div>
+
+<main class="page-wrap">
+
+  <div class="page-hero">
+    <span class="badge badge-css">✦ CSS</span>
+    <h1>Estilos y Diseño</h1>
+    <p>CSS (Cascading Style Sheets) controla la apariencia visual de los elementos HTML: colores, fuentes, tamaños, disposición y mucho más.</p>
+  </div>
+
+  <!-- ── SECCIÓN 1: SINTAXIS ── -->
+  <section class="section">
+    <h2>Sintaxis básica</h2>
+    <p>Una regla CSS se compone de un <strong>selector</strong> y un bloque de <strong>declaraciones</strong> (propiedad: valor).</p>
+
+    <pre><code><span class="cm">/* Selector → a quién aplicar */</span>
+<span class="sel">h1</span> {
+  <span class="prop">color</span>: <span class="val">#ff7b54</span>;
+  <span class="prop">font-size</span>: <span class="val">2rem</span>;
+  <span class="prop">font-weight</span>: <span class="val">bold</span>;
+}
+
+<span class="cm">/* Clase → .nombre-clase */</span>
+<span class="sel">.tarjeta</span> {
+  <span class="prop">background</span>: <span class="val">white</span>;
+  <span class="prop">border-radius</span>: <span class="val">8px</span>;
+  <span class="prop">padding</span>: <span class="val">1rem</span>;
+  <span class="prop">box-shadow</span>: <span class="val">0 4px 12px rgba(0,0,0,.1)</span>;
+}
+
+<span class="cm">/* ID → #nombre-id (único por página) */</span>
+<span class="sel">#hero</span> {
+  <span class="prop">min-height</span>: <span class="val">100vh</span>;
+  <span class="prop">display</span>: <span class="val">flex</span>;
+}
+<span class="code-label">CSS</span></code></pre>
+
+    <h3>Formas de vincular CSS</h3>
+    <pre><code><span class="cm">&lt;!-- 1. Externo (recomendado) --&gt;</span>
+<span class="tag-bracket">&lt;</span><span class="tag-name">link</span> <span class="attr-name">rel</span>=<span class="attr-val">"stylesheet"</span> <span class="attr-name">href</span>=<span class="attr-val">"styles.css"</span><span class="tag-bracket">&gt;</span>
+
+<span class="cm">&lt;!-- 2. Interno --&gt;</span>
+<span class="tag-bracket">&lt;</span><span class="tag-name">style</span><span class="tag-bracket">&gt;</span>
+  <span class="sel">body</span> { <span class="prop">margin</span>: <span class="val">0</span>; }
+<span class="tag-bracket">&lt;/</span><span class="tag-name">style</span><span class="tag-bracket">&gt;</span>
+
+<span class="cm">&lt;!-- 3. En línea (evitar si es posible) --&gt;</span>
+<span class="tag-bracket">&lt;</span><span class="tag-name">p</span> <span class="attr-name">style</span>=<span class="attr-val">"color: red;"</span><span class="tag-bracket">&gt;</span>Texto rojo<span class="tag-bracket">&lt;/</span><span class="tag-name">p</span><span class="tag-bracket">&gt;</span>
+<span class="code-label">HTML</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN 2: SELECTORES ── -->
+  <section class="section">
+    <h2>Selectores y especificidad</h2>
+    <p>Los selectores determinan a qué elementos se aplican los estilos. La <strong>especificidad</strong> decide cuál regla gana cuando hay conflicto.</p>
+
+    <table class="spec-table">
+      <thead>
+        <tr><th>Selector</th><th>Ejemplo</th><th>Especificidad</th><th>Descripción</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Universal</td><td><code>*</code></td><td>0</td><td>Todos los elementos</td></tr>
+        <tr><td>Etiqueta</td><td><code>p, h1</code></td><td>1</td><td>Por nombre de elemento</td></tr>
+        <tr><td>Clase</td><td><code>.card</code></td><td>10</td><td>Por atributo class</td></tr>
+        <tr><td>ID</td><td><code>#hero</code></td><td>100</td><td>Por atributo id</td></tr>
+        <tr><td>En línea</td><td><code>style=""</code></td><td>1000</td><td>Directamente en el elemento</td></tr>
+        <tr><td>Descendiente</td><td><code>nav a</code></td><td>Suma</td><td>Elemento dentro de otro</td></tr>
+        <tr><td>Pseudo-clase</td><td><code>a:hover</code></td><td>10</td><td>Estado del elemento</td></tr>
+      </tbody>
+    </table>
+
+    <pre><code><span class="cm">/* Selectores avanzados */</span>
+<span class="sel">nav a</span>         { <span class="prop">color</span>: <span class="val">blue</span>; }   <span class="cm">/* descendiente */</span>
+<span class="sel">nav > a</span>       { <span class="prop">color</span>: <span class="val">red</span>; }    <span class="cm">/* hijo directo */</span>
+<span class="sel">p + p</span>         { <span class="prop">margin-top</span>: <span class="val">0</span>; } <span class="cm">/* hermano adyacente */</span>
+<span class="sel">a:hover</span>       { <span class="prop">opacity</span>: <span class="val">.8</span>; }   <span class="cm">/* pseudo-clase */</span>
+<span class="sel">li:first-child</span> { <span class="prop">font-weight</span>: <span class="val">bold</span>; }
+<span class="sel">input[type="text"]</span> { <span class="prop">border</span>: <span class="val">1px solid gray</span>; }
+<span class="code-label">CSS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN 3: BOX MODEL ── -->
+  <section class="section">
+    <h2>Box Model (Modelo de Caja)</h2>
+    <p>Todo elemento HTML es una caja rectangular compuesta por 4 capas:</p>
+
+    <div class="info-card">
+      <div class="info-icon">📦</div>
+      <div class="info-content">
+        <h4>Content → Padding → Border → Margin</h4>
+        <p><strong>Content</strong>: el contenido real. <strong>Padding</strong>: espacio interior. <strong>Border</strong>: borde visible. <strong>Margin</strong>: espacio exterior con otros elementos.</p>
+      </div>
+    </div>
+
+    <pre><code><span class="sel">.caja</span> {
+  <span class="cm">/* Tamaño del contenido */</span>
+  <span class="prop">width</span>: <span class="val">300px</span>;
+  <span class="prop">height</span>: <span class="val">150px</span>;
+
+  <span class="cm">/* Relleno interior (arriba | derecha | abajo | izquierda) */</span>
+  <span class="prop">padding</span>: <span class="val">16px 24px</span>;
+
+  <span class="cm">/* Borde */</span>
+  <span class="prop">border</span>: <span class="val">2px solid #4ecdc4</span>;
+  <span class="prop">border-radius</span>: <span class="val">8px</span>;
+
+  <span class="cm">/* Margen exterior */</span>
+  <span class="prop">margin</span>: <span class="val">1rem auto</span>;
+
+  <span class="cm">/* Incluye padding y border en el width */</span>
+  <span class="prop">box-sizing</span>: <span class="val">border-box</span>;
+}
+<span class="code-label">CSS</span></code></pre>
+
+    <h3>Colores en CSS</h3>
+    <div class="color-row">
+      <div class="color-chip" style="background:#ff7b54;">#ff7b54</div>
+      <div class="color-chip" style="background:#38d9f5;">#38d9f5</div>
+      <div class="color-chip" style="background:#f5d761;">#f5d761</div>
+      <div class="color-chip" style="background:rgb(100,200,100);">rgb()</div>
+      <div class="color-chip" style="background:hsl(270,70%,60%);">hsl()</div>
+      <div class="color-chip" style="background:rgba(255,100,100,.5);">rgba()</div>
+      <div class="color-chip" style="background:linear-gradient(135deg,#ff7b54,#a78bfa);">grad</div>
+    </div>
+
+    <pre><code><span class="cm">/* Formas de declarar colores */</span>
+<span class="prop">color</span>: <span class="val">red</span>;                       <span class="cm">/* nombre */</span>
+<span class="prop">color</span>: <span class="val">#ff0000</span>;                   <span class="cm">/* hex */</span>
+<span class="prop">color</span>: <span class="val">rgb(255, 0, 0)</span>;           <span class="cm">/* rgb */</span>
+<span class="prop">color</span>: <span class="val">rgba(255, 0, 0, 0.5)</span>;    <span class="cm">/* rgba (transparencia) */</span>
+<span class="prop">color</span>: <span class="val">hsl(0, 100%, 50%)</span>;       <span class="cm">/* hsl */</span>
+<span class="prop">background</span>: <span class="val">linear-gradient(135deg, #ff7b54, #a78bfa)</span>;
+<span class="code-label">CSS</span></code></pre>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── SECCIÓN 4: FLEXBOX ── -->
+  <section class="section">
+    <h2>Flexbox</h2>
+    <p>Flexbox es el sistema de disposición más usado para alinear y distribuir elementos en una dimensión (fila o columna).</p>
+
+    <div class="box-demo">
+      <p style="font-size:.8rem;color:var(--muted);width:100%;margin:0 0 .75rem;">Vista previa: <code>display:flex; gap:12px; justify-content:center;</code></p>
+      <div class="flex-demo" style="width:100%;justify-content:center;">
+        <div class="flex-box fb1">Item 1</div>
+        <div class="flex-box fb2">Item 2</div>
+        <div class="flex-box fb3">Item 3</div>
+      </div>
+    </div>
+
+    <pre><code><span class="sel">.contenedor</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">flex-direction</span>: <span class="val">row</span>;          <span class="cm">/* row | column */</span>
+  <span class="prop">justify-content</span>: <span class="val">center</span>;     <span class="cm">/* alineación eje principal */</span>
+  <span class="prop">align-items</span>: <span class="val">center</span>;         <span class="cm">/* alineación eje cruzado */</span>
+  <span class="prop">flex-wrap</span>: <span class="val">wrap</span>;              <span class="cm">/* envolver si no caben */</span>
+  <span class="prop">gap</span>: <span class="val">1rem</span>;                    <span class="cm">/* espacio entre hijos */</span>
+}
+
+<span class="sel">.item</span> {
+  <span class="prop">flex</span>: <span class="val">1</span>;        <span class="cm">/* crecer para ocupar espacio */</span>
+  <span class="prop">flex-basis</span>: <span class="val">200px</span>;
+}
+<span class="code-label">CSS</span></code></pre>
+
+    <h3>Tipografía</h3>
+    <div class="tag-grid">
+      <div class="tag-item"><span class="css-prop-name">font-family</span><span class="tag-desc">Fuente del texto</span></div>
+      <div class="tag-item"><span class="css-prop-name">font-size</span><span class="tag-desc">Tamaño (px, rem, em, %)</span></div>
+      <div class="tag-item"><span class="css-prop-name">font-weight</span><span class="tag-desc">Grosor (400, 700, bold)</span></div>
+      <div class="tag-item"><span class="css-prop-name">line-height</span><span class="tag-desc">Altura de línea</span></div>
+      <div class="tag-item"><span class="css-prop-name">letter-spacing</span><span class="tag-desc">Espacio entre letras</span></div>
+      <div class="tag-item"><span class="css-prop-name">text-align</span><span class="tag-desc">Alineación del texto</span></div>
+      <div class="tag-item"><span class="css-prop-name">text-decoration</span><span class="tag-desc">Subrayado, tachado, etc.</span></div>
+      <div class="tag-item"><span class="css-prop-name">text-transform</span><span class="tag-desc">uppercase, lowercase, capitalize</span></div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── EJERCICIO CSS ── -->
+  <section class="section">
+    <h2>Ejercicio Interactivo</h2>
+    <p>Edita el HTML y CSS combinados. Presiona <strong>Ejecutar</strong> para ver el resultado:</p>
+
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <span class="exercise-title">🎨 Editor CSS en vivo</span>
+        <button class="btn btn-css" onclick="runCSS()">▶ Ejecutar</button>
+      </div>
+      <div class="exercise-body">
+        <div class="two-col">
+          <div>
+            <textarea class="code-input" id="css-editor" spellcheck="false" style="min-height:260px;"><style>
+  body { font-family: sans-serif; padding: 1rem; }
+  .tarjeta {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    max-width: 280px;
+  }
+  .tarjeta h2 { margin: 0 0 .5rem; font-size: 1.4rem; }
+  .tarjeta p  { margin: 0; opacity: .85; font-size:.9rem; }
+  .tag {
+    display: inline-block;
+    background: rgba(255,255,255,.2);
+    padding: .2rem .6rem;
+    border-radius: 100px;
+    font-size: .75rem;
+    margin-top: .75rem;
+  }
+</style>
+<div class="tarjeta">
+  <h2>Kevin Dev</h2>
+  <p>Estudiante de Ingeniería de Sistemas en la Universidad de Cartagena</p>
+  <span class="tag">💻 Full Stack</span>
+</div></textarea>
+          </div>
+          <div>
+            <iframe class="preview-frame" id="css-preview" style="min-height:260px;background:#f5f5f5;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Ejercicio 2 — Flexbox Layout</h3>
+    <div class="exercise-box">
+      <div class="exercise-header">
+        <span class="exercise-title">🔲 Flexbox en acción</span>
+        <button class="btn btn-css" onclick="runCSS2()">▶ Ejecutar</button>
+      </div>
+      <div class="exercise-body">
+        <div class="two-col">
+          <div>
+            <textarea class="code-input" id="css-editor2" spellcheck="false" style="min-height:240px;"><style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: sans-serif; }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: .75rem 1.5rem;
+    color: white;
+  }
+  .nav .logo { font-weight: 700; font-size: 1.1rem; color: #818cf8; }
+  .nav ul { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+  .nav a { color: #94a3b8; text-decoration: none; font-size: .9rem; }
+  .nav a:hover { color: white; }
+</style>
+<nav class="nav">
+  <span class="logo">MiSitio</span>
+  <ul>
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Sobre mí</a></li>
+    <li><a href="#">Proyectos</a></li>
+  </ul>
+</nav></textarea>
+          </div>
+          <div>
+            <iframe class="preview-frame" id="css-preview2" style="min-height:240px;background:#fff;"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ── TAREAS CSS ── -->
+  <section class="section">
+    <h2>Tareas</h2>
+    <div class="task-list">
+      <div class="task-item task-css">
+        <div class="task-num">01</div>
+        <div class="task-content">
+          <strong>Tarjeta de perfil</strong>
+          <p>Estiliza una tarjeta con foto circular (border-radius: 50%), nombre, descripción y un botón. Usa colores de tu elección.</p>
+        </div>
+        <span class="task-diff diff-easy">Fácil</span>
+      </div>
+      <div class="task-item task-css">
+        <div class="task-num">02</div>
+        <div class="task-content">
+          <strong>Barra de navegación</strong>
+          <p>Crea un navbar horizontal con logo a la izquierda y 4 links a la derecha usando Flexbox. Agrega hover effects.</p>
+        </div>
+        <span class="task-diff diff-easy">Fácil</span>
+      </div>
+      <div class="task-item task-css">
+        <div class="task-num">03</div>
+        <div class="task-content">
+          <strong>Grid de productos</strong>
+          <p>Diseña una galería de 6 tarjetas de productos usando CSS Grid con 3 columnas, imagen, título y precio.</p>
+        </div>
+        <span class="task-diff diff-medium">Medio</span>
+      </div>
+      <div class="task-item task-css">
+        <div class="task-num">04</div>
+        <div class="task-content">
+          <strong>Variables CSS y temas</strong>
+          <p>Crea un sistema de variables CSS (--primary-color, --bg, --text) y úsalas en toda la página. Luego crea una clase .dark que cambie los valores.</p>
+        </div>
+        <span class="task-diff diff-medium">Medio</span>
+      </div>
+      <div class="task-item task-css">
+        <div class="task-num">05</div>
+        <div class="task-content">
+          <strong>Página responsive</strong>
+          <p>Construye una landing page que tenga 2 columnas en desktop y 1 columna en móvil usando media queries (@media max-width: 600px).</p>
+        </div>
+        <span class="task-diff diff-hard">Difícil</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-nav-footer">
+    <a href="html.html" class="pnf-link">
+      <span class="pnf-label">← Anterior</span>
+      <span class="pnf-title">⟨⟩ HTML</span>
+    </a>
+    <a href="js.html" class="pnf-link right">
+      <span class="pnf-label">Siguiente →</span>
+      <span class="pnf-title">⚡ JavaScript</span>
+    </a>
+  </div>
+
+</main>
+
+<script>
+  document.getElementById('ham').addEventListener('click', function() {
+    this.classList.toggle('open');
+    document.getElementById('mob').classList.toggle('open');
+  });
+
+  function runCSS() {
+    const code = document.getElementById('css-editor').value;
+    const frame = document.getElementById('css-preview');
+    const doc = frame.contentDocument || frame.contentWindow.document;
+    doc.open(); doc.write(code); doc.close();
+  }
+  function runCSS2() {
+    const code = document.getElementById('css-editor2').value;
+    const frame = document.getElementById('css-preview2');
+    const doc = frame.contentDocument || frame.contentWindow.document;
+    doc.open(); doc.write(code); doc.close();
+  }
+
+  window.addEventListener('load', () => { runCSS(); runCSS2(); });
+</script>
+</body>
+</html>
